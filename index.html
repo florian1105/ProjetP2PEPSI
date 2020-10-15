@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Peer-to-Peer Cue System</title>
+        <script src="./peer.min.js"></script>
+    </head>
+    <body>
+		<h1>Peer-to-Peer Cue System</h1>
+	
+		<div style="position: relative; top: 10px; margin-left: 40px; line-height: 20px;">
+			
+		</div>
+		<script type="text/javaScript">
+           
+
+            let peer = new Peer(null,{host: 'localhost', port: 9000, path: '/'})
+            var conn = peer.connect('another-peers-id');
+            // on open will be launch when you successfully connect to PeerServer
+            conn.on('open', function(){
+              // here you have conn.id
+              conn.send('hi!');
+            });
+            peer.on('connection', function(conn) {
+                conn.on('data', function(data){
+                  // Will print 'hi!'
+                  console.log(data);
+                });
+              });
+
+        </script>
+    </body>
+</html>
