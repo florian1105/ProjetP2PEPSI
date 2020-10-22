@@ -1,9 +1,8 @@
-// project/public/website-server.js
 /**
  * This script starts a https server accessible at https://localhost:8443
  * to test the chat
  *
- * @author Carlos Delgado (Our Code World)
+ * @author Carlos Delgado
  */
 var fs     = require('fs');
 var http   = require('http');
@@ -60,14 +59,13 @@ Object.keys(ifaces).forEach(function (ifname) {
 // Allow access from all the devices of the network (as long as connections are allowed by the firewall)
 var LANAccess = "0.0.0.0";
 // For http
-httpServer.listen(8080, LANAccess);
+httpServer.listen(3030, LANAccess);
 // For https
 httpsServer.listen(8443, LANAccess);
 
-// Serve the index.html file as content of the / route
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname+'/index.html'));
 });
 
-// Expose the js resources as "resources"
+// Expose the css and js resources as "resources"
 app.use('/resources', express.static('./source'));
