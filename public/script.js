@@ -6,7 +6,7 @@ myVideo.muted = true;
 
 var peer = new Peer(undefined, {
   path: "/",
-  host: "localhost",
+  host: "/",
   port: "443", 
 });
 
@@ -20,12 +20,14 @@ navigator.mediaDevices
   .then((stream) => {
     myVideoStream = stream;
     addVideoStream(myVideo, stream);
-    
     socket.on("user-connected", (userId) => {
       console.log("user connected")
       connecToNewUser(userId, stream);
     });
+    
   });
+
+  
 
   peer.on("call", (call) => {
     console.log("calling")
